@@ -7,6 +7,9 @@ import BookmarksList from '@/components/BookmarksList'
 import AddBookmarkForm from '@/components/AddBookmarkForm'
 import LogoutButton from '@/components/LogoutButton'
 
+// Force dynamic rendering - this prevents static prerendering that fails without env vars
+export const dynamic = 'force-dynamic'
+
 type Bookmark = {
   id: string
   title: string
