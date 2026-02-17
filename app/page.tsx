@@ -2,8 +2,24 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import LoginButton from '@/components/LoginButton'
 
+export const dynamic = 'force-dynamic'
+
 export default async function LoginPage() {
-  const supabase = await createClient()
+  let supabase;
+  try {
+    supabase = await createClient()
+  } catch (error) {
+    console.error('Failed to create Supabase client:', error)
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold text-red-600 mb-2">Configuration Error</h1>
+          <p className="text-gray-600">Missing required environment variables. Please check your Supabase configuration.</p>
+        </div>
+      </div>
+    )
+  }
+  
   const { data: { user } } = await supabase.auth.getUser()
 
   if (user) {

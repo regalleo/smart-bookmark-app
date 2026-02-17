@@ -19,7 +19,23 @@ type Bookmark = {
 }
 
 export default function DashboardPage() {
-  const supabase = createClient()
+  const [error, setError] = useState<string | null>(null)
+  
+  let supabase: any;
+  try {
+    supabase = createClient()
+  } catch (err: any) {
+    setError(err.message || 'Failed to initialize Supabase client')
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold text-red-600 mb-2">Configuration Error</h1>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </div>
+    )
+  }
+  
   const router = useRouter()
 
   const [user, setUser] = useState<any>(null)
@@ -143,10 +159,11 @@ export default function DashboardPage() {
 
       <footer className="max-w-5xl mx-auto px-4 py-6 text-center">
         <p className="text-gray-400 text-sm">
-          Made by Raj Shekhar Singh • 2026 • Powered by Supabase • Built with Next.js
+          Made by Raj Shekhar Singh •  by Supabase •2026 • Powered Built with Next.js
         </p>
       </footer>
 
     </div>
   )
 }
+
