@@ -4,7 +4,7 @@ A real-time bookmark manager built with Next.js, Supabase, and Google OAuth.
 
 ## Live Demo
 
-🔗 **Live URL**: [Will be added after Vercel deployment]
+🔗 **Live URL**: [https://smart-bookmark-app-five-beta.vercel.app/]
 
 ## Features
 
